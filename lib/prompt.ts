@@ -1,37 +1,38 @@
-require('colors')
+// @ts-ignore
+import chalk from 'chalk';
+import * as args from 'args';
+import { createInterface } from 'readline';
 
-const args = require('args'),
-      read = require('readline').createInterface({
-          input: process.stdin,
-          output: process.stdout
-      })
+const read = createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
 
 args
   .option('name', 'Your Project Name', '')
   .option('target', 'Which project are you going to initialize. (p5, ml5)', '')
   .option('manager', 'Which package manager are you going to use. (yarn, npm)', '')
-  .option('yes', 'Skep all prompts', false)
 
 const f = args.parse(process.argv),
-      y = f.yes
+      y = f.yes;
 
-function readAsync(text) {
+function readAsync(text: string): Promise<string> {
     return new Promise(resolve => {
-        read.question(text, ans => {
+        read.question(text, (ans: string) => {
             resolve(ans);
         });
     });
 }
 
-module.exports = async function prompt(name, choices) {
+export default async function prompt(name: string, choices: string[]) {
     let result = choices[0];
     const any = choices.indexOf('*') !== -1;
     const choice = !any
-        ? choices.map(t => t.green).join('/')
-        : '*'.green;
+        ? choices.map(t => chalk.green(t)).join('/')
+        : chalk.green('*');
     if (f[name] === '') {
         if (!y) {
-            result = (await readAsync(`> Please input the name [${choice}]: ` + `(default: ${choices[0]})`.red + '\n> '))
+            result = (await readAsync(`> Please input the name [${choice}]: ` + chalk.red(`(default: ${choices[0]})`) + '\n> '))
                      || choices[0];
         }
     } else {
@@ -44,6 +45,6 @@ module.exports = async function prompt(name, choices) {
             process.exit(1);
         }
     }
-    console.info('✔'.green, 'Your choice is:', result.green);
+    console.info(chalk.green('✔'), 'Your choice is:', chalk.green(result));
     return result;
 }

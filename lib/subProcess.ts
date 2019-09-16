@@ -1,14 +1,14 @@
-const { spawn } = require('child_process'),
-      fs = require('fs')
+import { spawn } from 'child_process';
+import * as fs from 'fs';
 
-function clone(path, url) {
+export function clone(path: string, url: string) {
     return new Promise(resolve => {
         const child = spawn('git', ['clone', url, path])
         child.on('exit', resolve)
     })
 }
 
-async function sed(path, from, to) {
+export async function sed(path: string, from: any, to: string) {
     if (fs.existsSync(path) && fs.statSync(path).isFile()) {
         const d = fs.readFileSync(path).toString()
         fs.writeFileSync(path, d.replace(from, to))
@@ -18,7 +18,7 @@ async function sed(path, from, to) {
     }
 }
 
-function cli(cwd, cmd) {
+export function cli(cwd: string, cmd: string) {
     const args = cmd.split(' ')
     const f = args.shift()
     return new Promise(resolve => {
@@ -26,9 +26,3 @@ function cli(cwd, cmd) {
         child.on('exit', resolve)
     })
 }
-
-module.exports = {
-    clone,
-    sed,
-    cli
-} 
