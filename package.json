@@ -26,7 +26,9 @@
   "devDependencies": {
     "@types/args": "^3.0.0",
     "@types/node": "^12.7.5",
-    "typescript": "^3.6.3",
-    "tslint": "^5.20.0"
+    "@typescript-eslint/eslint-plugin": "^2.2.0",
+    "@typescript-eslint/parser": "^2.2.0",
+    "eslint": "^6.4.0",
+    "typescript": "^3.6.3"
   }
 }

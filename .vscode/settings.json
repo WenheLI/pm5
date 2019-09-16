@@ -1,4 +1,8 @@
 {
     "typescript.tsdk": "node_modules/typescript/lib",
-    "editor.rulers": [80]
+    "editor.rulers": [80],
+    "eslint.validate": [
+        "javascript",
+        "typescript",
+    ],
 }

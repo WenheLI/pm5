@@ -1,4 +1,3 @@
-// @ts-ignore
 import chalk from 'chalk';
 import * as args from 'args';
 import { createInterface } from 'readline';
@@ -18,14 +17,14 @@ const f = args.parse(process.argv),
       y = f.yes;
 
 function readAsync(text: string): Promise<string> {
-    return new Promise(resolve => {
+    return new Promise((resolve): void => {
         read.question(text, (ans: string) => {
             resolve(ans);
         });
     });
 }
 
-export async function prompt(name: string, choices: string[]) {
+export async function prompt(name: string, choices: string[]): Promise<string> {
     let result = choices[0];
     const anyone = choices.indexOf('*') !== -1;
     const choice = !anyone

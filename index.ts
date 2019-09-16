@@ -1,17 +1,16 @@
-// @ts-ignore
 import chalk from 'chalk';
-// @ts-ignore
 import ora from 'ora';
 import { join } from 'path';
 import { prompt } from './lib/prompt';
 import { clone, sed, cli } from './lib/subProcess';
 import { p5Preset } from './lib/constants';
+import * as pack from './package.json';
 
-const pack = require(join(__dirname, '../package.json')),
-      print = console.info,
-      cwd = process.cwd();
+// function alias
+const print = console.info;
+const cwd = process.cwd();
 
-async function run() {
+async function run(): Promise<void> {
     print('');
     print('> Welcome to use', chalk.green('pm5'), 
         'a scaffold tool for', chalk.blue('p5'), 'and', chalk.blue('ml5'));
