@@ -1,15 +1,19 @@
 {
   "name": "pm5",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "pm5 command line tool",
   "main": "./bin/pm5",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "postinstall": "npm -v"
+  },
+  "bin": {
+    "pm5": "./bin/pm5"
   },
   "files": [
     "*.js",
     "package.json",
-    "bin/*"
+    "bin/*",
+    "lib/*"
   ],
   "author": "",
   "license": "ISC",
