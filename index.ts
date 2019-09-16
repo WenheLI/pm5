@@ -5,7 +5,7 @@ import ora from 'ora';
 import { join } from 'path';
 import { prompt } from './lib/prompt';
 import { clone, sed, cli } from './lib/subProcess';
-import {p5Preset} from './lib/constants';
+import { p5Preset } from './lib/constants';
 
 const pack = require(join(__dirname, '../package.json')),
       print = console.info,
