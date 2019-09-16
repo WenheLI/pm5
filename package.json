@@ -5,6 +5,7 @@
   "main": "./bin/pm5",
   "scripts": {
     "build": "npx tsc",
+    "lint": "npx tslint -p . -t verbose",
     "prepublishOnly": "npm run build"
   },
   "bin": {
@@ -25,6 +26,7 @@
   "devDependencies": {
     "@types/args": "^3.0.0",
     "@types/node": "^12.7.5",
-    "typescript": "^3.6.3"
+    "typescript": "^3.6.3",
+    "tslint": "^5.20.0"
   }
 }

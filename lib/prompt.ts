@@ -8,10 +8,11 @@ const read = createInterface({
     output: process.stdout
 });
 
-args
-  .option('name', 'Your Project Name', '')
-  .option('target', 'Which project are you going to initialize. (p5, ml5)', '')
-  .option('manager', 'Which package manager are you going to use. (yarn, npm)', '')
+args.option('name', 'Your Project Name', '')
+    .option('target',
+        'Which project are you going to initialize. (p5, ml5)', '')
+    .option('manager',
+        'Which package manager are you going to use. (yarn, npm)', '');
 
 const f = args.parse(process.argv),
       y = f.yes;
@@ -24,22 +25,23 @@ function readAsync(text: string): Promise<string> {
     });
 }
 
-export default async function prompt(name: string, choices: string[]) {
+export async function prompt(name: string, choices: string[]) {
     let result = choices[0];
-    const any = choices.indexOf('*') !== -1;
-    const choice = !any
+    const anyone = choices.indexOf('*') !== -1;
+    const choice = !anyone
         ? choices.map(t => chalk.green(t)).join('/')
         : chalk.green('*');
     if (f[name] === '') {
         if (!y) {
-            result = (await readAsync(`> Please input the name [${choice}]: ` + chalk.red(`(default: ${choices[0]})`) + '\n> '))
-                     || choices[0];
+            result = (await readAsync(`> Please input the name [${choice}]: ` 
+                    + chalk.red(`(default: ${choices[0]})`) + '\n> '))
+                        || choices[0];
         }
     } else {
         result = f[name];
     }
     result = result.trim();
-    if (!any) {
+    if (!anyone) {
         if (choices.indexOf(result) === -1) {
             console.error(`\n- Unrecognized choice for ${name}! Please choose from [${choice}].`);
             process.exit(1);
