@@ -5,7 +5,7 @@
   "main": "./bin/pm5",
   "scripts": {
     "build": "npx tsc",
-    "lint": "npx tslint -p . -t verbose",
+    "lint": "npx eslint --ext .ts,.js lib/",
     "prepublishOnly": "npm run build"
   },
   "bin": {
