@@ -1,7 +1,7 @@
 import chalk from 'chalk';
 import ora from 'ora';
 import { join } from 'path';
-import { prompt } from './lib/prompt';
+import { textPrompt, selectPrompt } from './lib/prompt';
 import { clone, sed, cli } from './lib/subProcess';
 import { p5Preset } from './lib/constants';
 import * as pack from './package.json';
@@ -23,11 +23,9 @@ async function run(): Promise<void> {
     print('> Latest:', chalk.blue(pack.version));
     print('');
 
-    // target check
-    // const target = await prompt('target', ['p5'])
-    const name = await prompt('name', ['pm5-template', '*']);
-    const manager = await prompt('manager', ['yarn', 'npm']);
-    print('');
+    const name = await textPrompt('name', 'pm5-template', /^[a-z](-|[0-9]|[a-z])*([0-9]|[a-z])$/);
+    const manager = await selectPrompt('manager', ['yarn', 'npm']);
+    // const target = await selectPrompt('target', ['p5', 'ml5']);
 
     const cloneSpinner = ora('Cloning workspace from remote repo.').start();
     const cloneCode = await clone(join(cwd, name), p5Preset.P5REPO);

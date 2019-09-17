@@ -24,10 +24,12 @@
   "dependencies": {
     "args": "^5.0.1",
     "chalk": "^2.4.2",
+    "inquirer": "^7.0.0",
     "ora": "^3.4.0"
   },
   "devDependencies": {
     "@types/args": "^3.0.0",
+    "@types/inquirer": "^6.5.0",
     "@types/node": "^12.7.5",
     "@typescript-eslint/eslint-plugin": "^2.2.0",
     "@typescript-eslint/parser": "^2.2.0",
