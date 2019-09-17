@@ -24,7 +24,7 @@ async function run(): Promise<void> {
     print('');
 
     const name = await textPrompt('name', 'pm5-template', /^[a-z](-|[0-9]|[a-z])*([0-9]|[a-z])$/);
-    const manager = await selectPrompt('manager', ['yarn', 'npm']);
+    const manager = await selectPrompt('manager', ['npm', 'yarn']);
     // const target = await selectPrompt('target', ['p5', 'ml5']);
 
     const cloneSpinner = ora('Cloning workspace from remote repo.').start();
