@@ -1,6 +1,6 @@
 {
   "name": "pm5",
-  "version": "1.2.4",
+  "version": "0.2.4",
   "description": "pm5 command line tool",
   "main": "./bin/pm5",
   "scripts": {
@@ -16,6 +16,9 @@
     "bin/*",
     "dist/*"
   ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/@NHibiki"
+  },
   "author": "NHibiki",
   "license": "ISC",
   "dependencies": {
