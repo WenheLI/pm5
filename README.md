@@ -5,7 +5,7 @@ pm5-cli provides an open-and-use tool for p5 and ml5 users. By one command, you 
 
 ## usage 
 ```
-pm5 cli [options] [command]
+pm5 [options] [command]
   
   Commands:
     help     Display help
