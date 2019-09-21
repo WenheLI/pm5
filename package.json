@@ -4,8 +4,8 @@
   "description": "pm5 command line tool",
   "main": "./bin/pm5",
   "scripts": {
-    "build": "npx tsc",
-    "watch": "npx tsc --watch",
+    "build": "rm -rf dist/ && npx tsc",
+    "watch": "rm -rf dist/ && npx tsc --watch",
     "lint": "npx eslint index.ts --ext .ts,.js lib/",
     "prepublishOnly": "npm run build"
   },
