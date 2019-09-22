@@ -3,9 +3,9 @@ import ora from 'ora';
 import { join } from 'path';
 import { textPrompt, selectPrompt } from './lib/prompt';
 import { sed, cli, creatFromTemplate, mergeFromTemplate } from './lib/subProcess';
-import { p5Preset } from './lib/constants';
+import { p5Preset, PackageManager } from './lib/constants';
 import * as pack from './package.json';
-import { createProject } from './lib/utils';
+import { createProject, installDeps } from './lib/utils';
 
 // function alias
 const print = console.info;
@@ -25,7 +25,7 @@ async function run(): Promise<void> {
     print('');
 
     const name = await textPrompt('name', 'pm5-template', /^[a-z](-|[0-9]|[a-z])*([0-9]|[a-z])$/);
-    const manager = await selectPrompt('manager', ['npm', 'yarn']);
+    const manager = (await selectPrompt('manager', ['npm', 'yarn', 'cnpm'])) as PackageManager;
     const language = await selectPrompt('programming language', ['js', 'ts']);
     // const target = await selectPrompt('target', ['p5', 'ml5']);
 
@@ -62,7 +62,7 @@ async function run(): Promise<void> {
     nameSpinner.succeed();
 
     const mgrSpinner = ora('Installing dependencies.').start();
-    const mgrCode = await cli(join(cwd, name), manager === 'yarn' ? 'yarn install' : 'npm install');
+    const mgrCode = await cli(join(cwd, name), installDeps(manager));
     if (mgrCode) {
         mgrSpinner.fail();
         throw Error('Fail to install dependencies.');
