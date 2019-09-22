@@ -2,7 +2,7 @@ import chalk from 'chalk';
 import ora from 'ora';
 import { join } from 'path';
 import { textPrompt, selectPrompt } from './lib/prompt';
-import { sed, cli, creatFromTemplate, mergeFromTemplate } from './lib/subProcess';
+import { sed, cli, createFromTemplate, mergeFromTemplate } from './lib/subProcess';
 import { p5Preset, PackageManager } from './lib/constants';
 import * as pack from './package.json';
 import { createProject, installDeps } from './lib/utils';
@@ -43,7 +43,7 @@ async function run(): Promise<void> {
     const nameSpinner = ora('Initializing workspace.').start();
     
     // template for js
-    creatFromTemplate(join(`${__dirname}`, 'templates', 'template-base') ,name, language);
+    createFromTemplate(join(`${__dirname}`, 'templates', 'template-base') ,name, language);
     await sed(
         join(cwd, name, 'src/index.html'), p5Preset.SCRIPT, `./index.${language}`
     );

@@ -29,7 +29,7 @@ export function cli(cwd: string, cmd: string): Promise<string> {
     });
 }
 
-export function creatFromTemplate(templatePath: string, projectName: string, language: string): void {
+export function createFromTemplate(templatePath: string, projectName: string, language: string): void {
     const files = fs.readdirSync(templatePath);
     //TODO aysnc exec?
     files.forEach(file => {
@@ -42,7 +42,7 @@ export function creatFromTemplate(templatePath: string, projectName: string, lan
             fs.writeFileSync(writePath, contents, 'utf8');
         } else if (stats.isDirectory()) {
             fs.mkdirSync(join(process.cwd(), projectName, file));
-            creatFromTemplate(join(templatePath, file), join(projectName, file), language);
+            createFromTemplate(join(templatePath, file), join(projectName, file), language);
         }
     });
 }
@@ -59,7 +59,7 @@ export function mergeFromTemplate(templatePath: string, projectName: string): vo
                 const oriContents = fs.readFileSync(join(process.cwd(), projectName, file), 'utf8');
                 const contentsJson = JSON.parse(contents);
                 const oriContentsJson = JSON.parse(oriContents);
-                contents = JSON.stringify(deepmerge(contentsJson, oriContentsJson));
+                contents = JSON.stringify(deepmerge(contentsJson, oriContentsJson), null, 2);
             }
             const writePath = join(process.cwd(), projectName, file);
             fs.writeFileSync(writePath, contents, 'utf8');

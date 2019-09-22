@@ -5,9 +5,10 @@
   "main": "./bin/pm5",
   "scripts": {
     "build": "rm -rf dist/ && npx tsc && cp -R templates dist/templates",
-    "watch": "rm -rf dist/ && npx tsc --watch",
+    "watch": "rm -rf dist/ && npx tsc --watch  && cp -R templates dist/templates",
     "lint": "npx eslint index.ts --ext .ts,.js lib/",
     "clean": "rm -rf ./node_modules",
+    "cli": "./bin/pm5",
     "prepublishOnly": "npm run build"
   },
   "bin": {
