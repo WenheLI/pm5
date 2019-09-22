@@ -1,7 +1,9 @@
 import { spawn } from 'child_process';
 import * as fs from 'fs';
 import {join} from 'path';
-import * as deepmerge from 'deepmerge';
+import * as _deepmerge from 'deepmerge';
+
+const deepmerge = _deepmerge;
 
 export function clone(path: string, url: string): Promise<string> {
     return new Promise((resolve): void => {
