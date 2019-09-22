@@ -20,7 +20,8 @@ export async function textPrompt(name: string, defaultValue: string, validation?
         name,
         message: `Please input the ${name}`,
         default: defaultValue,
-        validate: ans => {
+        // TODO return type should be the same?
+        validate: (ans): boolean | string => {
             if (!validation) {
                 return true;
             } else {

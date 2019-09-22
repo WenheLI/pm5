@@ -4,7 +4,7 @@
   "description": "pm5 command line tool",
   "main": "./bin/pm5",
   "scripts": {
-    "build": "rm -rf dist/ && npx tsc",
+    "build": "rm -rf dist/ && npx tsc && cp -R templates dist/templates",
     "watch": "rm -rf dist/ && npx tsc --watch",
     "lint": "npx eslint index.ts --ext .ts,.js lib/",
     "prepublishOnly": "npm run build"
@@ -25,6 +25,7 @@
   "dependencies": {
     "args": "^5.0.1",
     "chalk": "^2.4.2",
+    "deepmerge": "^4.0.0",
     "inquirer": "^7.0.0",
     "ora": "^3.4.0"
   },
