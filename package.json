@@ -7,6 +7,7 @@
     "build": "rm -rf dist/ && npx tsc && cp -R templates dist/templates",
     "watch": "rm -rf dist/ && npx tsc --watch  && cp -R templates dist/templates",
     "lint": "npx eslint index.ts --ext .ts,.js lib/",
+    "commitlint": "npx commitlint --from be5419a7bc88279e53d52f012c5297a76c6b74f1 --to HEAD --verbose",
     "clean": "rm -rf ./node_modules",
     "cli": "./bin/pm5",
     "prepublishOnly": "npm run build"
